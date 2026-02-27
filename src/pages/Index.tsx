@@ -1,31 +1,46 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Code, Zap, Users, Github, Linkedin, Mail, ExternalLink, Star } from "lucide-react"
+import Icon from "@/components/ui/icon"
+import { useState } from "react"
 
-export default function Portfolio() {
+export default function ATNMain() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="font-bold text-xl text-slate-900">CodePulse</div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#about" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Обо мне
-              </a>
-              <a href="#services" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Услуги
-              </a>
-              <a href="#projects" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Проекты
-              </a>
-              <a href="#contact" className="text-slate-600 hover:text-slate-900 transition-colors">
-                Контакты
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#0081c1" }}>
+                <Icon name="Flame" size={18} className="text-white" />
+              </div>
+              <span className="font-bold text-lg text-slate-900">ООО Компания АТН</span>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#about" className="text-slate-600 hover:text-[#0081c1] transition-colors font-medium">О компании</a>
+              <a href="#services" className="text-slate-600 hover:text-[#0081c1] transition-colors font-medium">Услуги</a>
+              <a href="#projects" className="text-slate-600 hover:text-[#0081c1] transition-colors font-medium">Объекты</a>
+              <a href="#contact" className="text-slate-600 hover:text-[#0081c1] transition-colors font-medium">Контакты</a>
+              <a href="/employees" className="text-white px-4 py-2 rounded-md font-medium transition-opacity hover:opacity-80" style={{ backgroundColor: "#0081c1" }}>
+                Сотрудникам
               </a>
             </div>
+            <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}>
+              <Icon name={menuOpen ? "X" : "Menu"} size={24} className="text-slate-700" />
+            </button>
           </div>
+          {menuOpen && (
+            <div className="md:hidden pb-4 flex flex-col gap-3">
+              <a href="#about" className="text-slate-600 hover:text-[#0081c1] py-1" onClick={() => setMenuOpen(false)}>О компании</a>
+              <a href="#services" className="text-slate-600 hover:text-[#0081c1] py-1" onClick={() => setMenuOpen(false)}>Услуги</a>
+              <a href="#projects" className="text-slate-600 hover:text-[#0081c1] py-1" onClick={() => setMenuOpen(false)}>Объекты</a>
+              <a href="#contact" className="text-slate-600 hover:text-[#0081c1] py-1" onClick={() => setMenuOpen(false)}>Контакты</a>
+              <a href="/employees" className="text-white px-4 py-2 rounded-md font-medium w-fit" style={{ backgroundColor: "#0081c1" }}>Сотрудникам</a>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -34,38 +49,59 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge className="mb-4 bg-blue-100 text-blue-800 hover:bg-blue-200">Открыт для проектов</Badge>
+              <Badge className="mb-4 text-white" style={{ backgroundColor: "#0081c1" }}>
+                Республика Карелия
+              </Badge>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-                Помогаю разработчикам <span className="text-blue-600">создавать</span> веб-приложения быстрее
+                Проектирование и монтаж{" "}
+                <span style={{ color: "#0081c1" }}>газопроводов</span> и газового оборудования
               </h1>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                Специализируюсь на создании современных, масштабируемых веб-приложений с использованием
-                передовых технологий. Превращу ваши идеи в мощные цифровые решения.
+                Полный цикл работ — от проектирования до пуско-наладки. Строительство теплоэнергетических объектов,
+                монтаж котельного оборудования и автоматизация технологических процессов.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                  Начать проект
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                <Button size="lg" className="text-white font-semibold" style={{ backgroundColor: "#0081c1" }}
+                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+                  Получить консультацию
+                  <Icon name="ArrowRight" size={16} className="ml-2" />
                 </Button>
-                <Button variant="outline" size="lg">
-                  Смотреть работы
+                <Button variant="outline" size="lg"
+                  onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
+                  Наши услуги
                 </Button>
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <Code className="h-6 w-6" />
-                    <span className="font-semibold">Современный стек</span>
+              <div className="rounded-2xl p-8 text-white" style={{ background: "linear-gradient(135deg, #0081c1 0%, #005a8e 100%)" }}>
+                <h3 className="text-xl font-bold mb-6">Почему выбирают АТН</h3>
+                <div className="space-y-5">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center shrink-0">
+                      <Icon name="ShieldCheck" size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">Лицензированная деятельность</p>
+                      <p className="text-blue-100 text-sm">Все работы выполняются в соответствии с нормами и стандартами</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Zap className="h-6 w-6" />
-                    <span className="font-semibold">Быстрая разработка</span>
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center shrink-0">
+                      <Icon name="Wrench" size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">Полный цикл работ</p>
+                      <p className="text-blue-100 text-sm">Проектирование, монтаж, пуско-наладка под ключ</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Users className="h-6 w-6" />
-                    <span className="font-semibold">Решения для разработчиков</span>
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center shrink-0">
+                      <Icon name="MapPin" size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold">Работаем в Карелии</p>
+                      <p className="text-blue-100 text-sm">Местная команда, быстрые сроки, знание региона</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -78,47 +114,49 @@ export default function Portfolio() {
       <section id="about" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Обо мне</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">О компании</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Увлеченный full-stack разработчик с экспертизой в современных веб-технологиях
+              ООО Компания АТН — надёжный партнёр в сфере газоснабжения и теплоэнергетики Республики Карелия
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">Создаю будущее веб-разработки</h3>
+              <h3 className="text-2xl font-bold text-slate-900 mb-6">Профессиональный подход к каждому объекту</h3>
               <p className="text-slate-600 mb-6 leading-relaxed">
-                За 5+ лет опыта в веб-разработке я помог десяткам разработчиков и стартапов
-                воплотить их идеи в жизнь. Мой фокус — создание эффективных, масштабируемых
-                и поддерживаемых решений с использованием актуальных технологий.
+                Мы специализируемся на проектировании и монтаже газопроводов, газового и котельного оборудования.
+                Компания выполняет полный комплекс работ — от технического проектирования до пуско-наладки
+                и автоматизации технологических процессов.
               </p>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Frontend</h4>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">React</Badge>
-                    <Badge variant="secondary">Next.js</Badge>
-                    <Badge variant="secondary">TypeScript</Badge>
-                    <Badge variant="secondary">Tailwind</Badge>
-                  </div>
+              <p className="text-slate-600 mb-8 leading-relaxed">
+                Наша команда профессионалов обеспечивает высокое качество всех видов работ в строгом соответствии
+                с действующими нормами и правилами безопасности.
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center p-4 rounded-xl bg-blue-50">
+                  <div className="text-3xl font-bold mb-1" style={{ color: "#0081c1" }}>10+</div>
+                  <div className="text-sm text-slate-600">лет на рынке</div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-2">Backend</h4>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Node.js</Badge>
-                    <Badge variant="secondary">Python</Badge>
-                    <Badge variant="secondary">PostgreSQL</Badge>
-                    <Badge variant="secondary">MongoDB</Badge>
-                  </div>
+                <div className="text-center p-4 rounded-xl bg-blue-50">
+                  <div className="text-3xl font-bold mb-1" style={{ color: "#0081c1" }}>100+</div>
+                  <div className="text-sm text-slate-600">объектов сдано</div>
                 </div>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="/developer-workspace.png"
-                alt="Рабочее место разработчика"
-                className="rounded-2xl shadow-lg w-full max-w-[400px] h-auto"
-              />
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { icon: "Flame", label: "Газопроводы" },
+                { icon: "Thermometer", label: "Котельное оборудование" },
+                { icon: "Cpu", label: "Автоматизация" },
+                { icon: "Package", label: "Поставка оборудования" },
+              ].map((item) => (
+                <div key={item.label} className="p-5 rounded-xl border border-slate-200 flex flex-col items-center gap-3 text-center hover:border-[#0081c1] transition-colors">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#e6f3fb" }}>
+                    <Icon name={item.icon} size={24} style={{ color: "#0081c1" }} />
+                  </div>
+                  <span className="text-sm font-medium text-slate-700">{item.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -128,68 +166,83 @@ export default function Portfolio() {
       <section id="services" className="py-20 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Услуги</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Наши услуги</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Полный спектр услуг веб-разработки для ускорения вашего проекта
+              Полный спектр работ в области газоснабжения и теплоэнергетики
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <Code className="h-6 w-6 text-blue-600" />
-                </div>
-                <CardTitle>Full-Stack разработка</CardTitle>
-                <CardDescription>
-                  Комплексная разработка веб-приложений с использованием современных фреймворков и лучших практик.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li>* React/Next.js приложения</li>
-                  <li>* Разработка и интеграция API</li>
-                  <li>* Проектирование баз данных</li>
-                  <li>* Аутентификация и безопасность</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-green-600" />
-                </div>
-                <CardTitle>Оптимизация</CardTitle>
-                <CardDescription>Ускорение существующих приложений и улучшение пользовательского опыта.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li>* Code Splitting и Lazy Loading</li>
-                  <li>* Оптимизация размера бандла</li>
-                  <li>* SEO и Core Web Vitals</li>
-                  <li>* Мониторинг производительности</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <Users className="h-6 w-6 text-purple-600" />
-                </div>
-                <CardTitle>Менторство</CardTitle>
-                <CardDescription>Индивидуальное наставничество для развития навыков разработчиков.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li>* Code Review и лучшие практики</li>
-                  <li>* Планирование архитектуры</li>
-                  <li>* Развитие карьеры</li>
-                  <li>* Подготовка к собеседованиям</li>
-                </ul>
-              </CardContent>
-            </Card>
+            {[
+              {
+                icon: "Building2",
+                color: "#0081c1",
+                bg: "#e6f3fb",
+                title: "Строительство теплоэнергетических объектов",
+                desc: "Проектирование и строительство объектов теплоснабжения «под ключ». Соответствие всем техническим регламентам и нормам безопасности.",
+                points: ["Котельные малой и средней мощности", "Тепловые пункты", "Техническое проектирование", "Сдача объекта в эксплуатацию"],
+              },
+              {
+                icon: "GitBranch",
+                color: "#0081c1",
+                bg: "#e6f3fb",
+                title: "Монтаж наружного газопровода",
+                desc: "Прокладка надземных и подземных газопроводов с соблюдением всех норм и правил. Надёжные и долговечные решения.",
+                points: ["Надземные газопроводы", "Подземные газопроводы", "Прокладка в траншеях и футлярах", "Испытания и приёмка"],
+              },
+              {
+                icon: "Home",
+                color: "#0081c1",
+                bg: "#e6f3fb",
+                title: "Монтаж внутридомовой газовой системы",
+                desc: "Установка и подключение газового оборудования внутри зданий. Жилые дома, административные и производственные здания.",
+                points: ["Разводка газовых сетей", "Подключение плит и котлов", "Монтаж регуляторов давления", "Проверка герметичности"],
+              },
+              {
+                icon: "Flame",
+                color: "#0081c1",
+                bg: "#e6f3fb",
+                title: "Монтаж котельного оборудования",
+                desc: "Установка котлов и вспомогательного оборудования. Пуско-наладочные работы с выдачей технической документации.",
+                points: ["Монтаж котлов любой мощности", "Обвязка оборудования", "Пуско-наладочные работы", "Технический паспорт объекта"],
+              },
+              {
+                icon: "Cpu",
+                color: "#0081c1",
+                bg: "#e6f3fb",
+                title: "Автоматизация технологических процессов",
+                desc: "Внедрение систем автоматического управления и контроля теплоэнергетического оборудования.",
+                points: ["Системы АСУ ТП", "Диспетчеризация", "Программирование контроллеров", "Удалённый мониторинг"],
+              },
+              {
+                icon: "Package",
+                color: "#0081c1",
+                bg: "#e6f3fb",
+                title: "Поставка оборудования автоматизации",
+                desc: "Подбор и поставка приборов, контроллеров и комплектующих для систем автоматизации от проверенных производителей.",
+                points: ["Датчики и приборы учёта", "Промышленные контроллеры", "Запорная арматура", "Официальная гарантия"],
+              },
+            ].map((s) => (
+              <Card key={s.title} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={{ backgroundColor: s.bg }}>
+                    <Icon name={s.icon} size={24} style={{ color: s.color }} />
+                  </div>
+                  <CardTitle className="text-base leading-snug">{s.title}</CardTitle>
+                  <CardDescription>{s.desc}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-1.5 text-sm text-slate-600">
+                    {s.points.map((p) => (
+                      <li key={p} className="flex items-start gap-2">
+                        <Icon name="Check" size={14} className="mt-0.5 shrink-0" style={{ color: "#0081c1" }} />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -198,89 +251,53 @@ export default function Portfolio() {
       <section id="projects" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Избранные проекты</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Реализованные объекты</h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Недавние работы, которые помогли разработчикам создать отличные приложения
+              Примеры наших работ в Республике Карелия
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
-              <div className="relative h-48 bg-gradient-to-r from-blue-500 to-purple-600">
-                <img
-                  src="/modern-web-dashboard.png"
-                  alt="SaaS дашборд"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+              <div className="h-48 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #0081c1 0%, #005a8e 100%)" }}>
+                <div className="text-center text-white">
+                  <Icon name="Building2" size={48} className="mx-auto mb-3 opacity-80" />
+                  <p className="font-semibold text-lg">Котельная</p>
+                </div>
               </div>
               <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle>SaaS-платформа</CardTitle>
-                    <CardDescription>
-                      Комплексный дашборд для управления SaaS-приложениями с аналитикой в реальном времени.
-                    </CardDescription>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button variant="ghost" size="icon">
-                      <Github className="h-4 w-4" />
-                    </Button>
-                    <Button variant="ghost" size="icon">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle>Монтаж котельной в Петрозаводске</CardTitle>
+                <CardDescription>
+                  Полный комплекс работ по монтажу котельного оборудования и систем автоматизации для жилого комплекса.
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">Next.js</Badge>
-                  <Badge variant="outline">TypeScript</Badge>
-                  <Badge variant="outline">Prisma</Badge>
-                  <Badge variant="outline">Tailwind</Badge>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-600">
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span>В топе Product Hunt</span>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline">Котельное оборудование</Badge>
+                  <Badge variant="outline">АСУ ТП</Badge>
+                  <Badge variant="outline">Пуско-наладка</Badge>
                 </div>
               </CardContent>
             </Card>
 
             <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
-              <div className="relative h-48 bg-gradient-to-r from-green-500 to-blue-600">
-                <img
-                  src="/ecommerce-mobile-app.png"
-                  alt="Мобильное приложение"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+              <div className="h-48 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #005a8e 0%, #003d61 100%)" }}>
+                <div className="text-center text-white">
+                  <Icon name="GitBranch" size={48} className="mx-auto mb-3 opacity-80" />
+                  <p className="font-semibold text-lg">Газопровод</p>
+                </div>
               </div>
               <CardHeader>
-                <div className="flex justify-between items-start">
-                  <div>
-                    <CardTitle>E-commerce приложение</CardTitle>
-                    <CardDescription>
-                      React Native приложение с удобным шопингом и интеграцией платежей.
-                    </CardDescription>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button variant="ghost" size="icon">
-                      <Github className="h-4 w-4" />
-                    </Button>
-                    <Button variant="ghost" size="icon">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle>Наружный газопровод низкого давления</CardTitle>
+                <CardDescription>
+                  Прокладка подземного газопровода для газификации жилого квартала. Протяжённость — 1,2 км.
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <Badge variant="outline">React Native</Badge>
-                  <Badge variant="outline">Node.js</Badge>
-                  <Badge variant="outline">MongoDB</Badge>
-                  <Badge variant="outline">Stripe</Badge>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-600">
-                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span>10 000+ загрузок</span>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline">Подземный газопровод</Badge>
+                  <Badge variant="outline">Низкое давление</Badge>
+                  <Badge variant="outline">Испытания</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -292,48 +309,58 @@ export default function Portfolio() {
       <section id="contact" className="py-20 bg-slate-900 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Создадим что-то потрясающее</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Свяжитесь с нами</h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Готовы ускорить процесс разработки? Давайте обсудим ваш проект.
+              Готовы ответить на ваши вопросы и рассчитать стоимость работ
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold mb-6">Связаться со мной</h3>
+              <h3 className="text-2xl font-bold mb-6">Контактная информация</h3>
               <p className="text-slate-300 mb-8 leading-relaxed">
-                Будь то стартап, которому нужен MVP, или компания, желающая модернизировать
-                технологический стек — я помогу вам добиться успеха.
+                Оставьте заявку или позвоните нам — специалист проконсультирует по вашему проекту и подберёт
+                оптимальное решение.
               </p>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <Mail className="h-6 w-6" />
+              <div className="space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: "#0081c1" }}>
+                    <Icon name="Phone" size={22} className="text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold">Email</p>
-                    <p className="text-slate-300">hello@example.com</p>
+                    <p className="font-semibold">Телефон / Факс</p>
+                    <p className="text-slate-300">8 (8142) 78-27-12</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <Github className="h-6 w-6" />
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: "#0081c1" }}>
+                    <Icon name="Mail" size={22} className="text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold">GitHub</p>
-                    <p className="text-slate-300">@codepulse</p>
+                    <p className="font-semibold">E-mail</p>
+                    <p className="text-slate-300">atmcompany@mail.ru</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <Linkedin className="h-6 w-6" />
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: "#0081c1" }}>
+                    <Icon name="MapPin" size={22} className="text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold">LinkedIn</p>
-                    <p className="text-slate-300">@codepulse-dev</p>
+                    <p className="font-semibold">Адрес</p>
+                    <p className="text-slate-300">Республика Карелия, 185035, г. Петрозаводск,<br />ул. Кирова, д. 5, офис 404-405</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: "#0081c1" }}>
+                    <Icon name="Clock" size={22} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">Часы работы</p>
+                    <p className="text-slate-300">Пн–Пт: 9:00 – 18:00</p>
                   </div>
                 </div>
               </div>
@@ -341,9 +368,9 @@ export default function Portfolio() {
 
             <Card className="bg-slate-800 border-slate-700">
               <CardHeader>
-                <CardTitle className="text-white">Начать проект</CardTitle>
+                <CardTitle className="text-white">Оставить заявку</CardTitle>
                 <CardDescription className="text-slate-300">
-                  Расскажите о проекте, и обсудим, как я могу помочь.
+                  Расскажите о вашем проекте — мы свяжемся в рабочее время.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -352,38 +379,38 @@ export default function Portfolio() {
                     <label className="block text-sm font-medium text-slate-300 mb-2">Имя</label>
                     <input
                       type="text"
-                      className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2"
+                      style={{ outline: "none" }}
                       placeholder="Иван"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">Фамилия</label>
+                    <label className="block text-sm font-medium text-slate-300 mb-2">Организация</label>
                     <input
                       type="text"
-                      className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Иванов"
+                      className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2"
+                      placeholder="ООО Пример"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Телефон</label>
                   <input
-                    type="email"
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="ivan@example.com"
+                    type="tel"
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2"
+                    placeholder="+7 (___) ___-__-__"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">О проекте</label>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Описание проекта</label>
                   <textarea
                     rows={4}
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Расскажите о вашем проекте..."
+                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2 resize-none"
+                    placeholder="Кратко опишите объект и вид работ..."
                   />
                 </div>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                  Отправить
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                <Button className="w-full text-white font-semibold" style={{ backgroundColor: "#0081c1" }}>
+                  Отправить заявку
                 </Button>
               </CardContent>
             </Card>
@@ -394,11 +421,17 @@ export default function Portfolio() {
       {/* Footer */}
       <footer className="bg-slate-950 text-slate-400 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="font-bold text-xl text-white mb-4 md:mb-0">CodePulse</div>
-            <p className="text-center md:text-right">
-              2024 CodePulse. Помогаю разработчикам создавать быстрые и качественные веб-приложения.
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ backgroundColor: "#0081c1" }}>
+                <Icon name="Flame" size={15} className="text-white" />
+              </div>
+              <span className="font-semibold text-white">ООО Компания АТН</span>
+            </div>
+            <p className="text-sm text-center">
+              © {new Date().getFullYear()} ООО Компания АТН. Все права защищены.
             </p>
+            <p className="text-sm">Петрозаводск, ул. Кирова, д. 5</p>
           </div>
         </div>
       </footer>
